@@ -40,43 +40,101 @@ body, html {
   z-index: 1;
 }
 
-/* Navbar */
+/* ===== NAVBAR - OVERRIDE ===== */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: rgba(0, 0, 0, 0.4);
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.45); /* sama seperti permintaan */
   backdrop-filter: blur(6px);
-  z-index: 1000;
+  padding: 8px 12px !important;
+  transition: background 0.2s ease;
 }
 
-.navbar .logo {
-  font-size: 1.5rem;
+/* Logo (MIVIBES tidak diganti) */
+.navbar .logo,
+.navbar-brand .logo {
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #c77dff;
-  letter-spacing: 2px;
+  color: #c77dff; /* warna tetap */
+  letter-spacing: 1.5px;
+  margin-left: 4px;
 }
 
-.navbar ul {
+/* Menu container */
+.navbar ul,
+.navbar .navbar-nav {
   list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 25px;
+  gap: 18px;
+  align-items: center;
 }
 
-.navbar ul li a {
-  text-decoration: none;
-  color: #fff;
+/* Links */
+.navbar .nav-link {
+  color: #ffffff;
   font-weight: 500;
-  transition: 0.3s;
+  padding: 8px 10px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.navbar .nav-link:hover {
+  color: #c77dff;
+  transform: translateY(-2px);
 }
 
-.navbar ul li a:hover {
-  color: #c77dff;
+/* Hamburger */
+.navbar-toggler {
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px;
+  margin-right: 4px;
+}
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* MENU TERBUKA (HP) — WARNA SAMA DENGAN NAVBAR */
+.collapse.show {
+  background: rgba(0, 0, 0, 0.45); /* sama seperti navbar */
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+  width: calc(100% - 24px);
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+/* Susunan menu di HP */
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .navbar .nav-link {
+    padding: 12px 14px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Extra kecil */
+@media (max-width: 576px) {
+  .navbar {
+    padding: 8px 8px !important;
+  }
+  .navbar .logo {
+    font-size: 1.05rem;
+  }
+  .collapse.show {
+    width: calc(100% - 16px);
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 14px;
+  }
 }
 
 /* Hero Section */
