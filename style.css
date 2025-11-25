@@ -13,7 +13,7 @@ body, html {
   overflow-x: hidden;
 }
 
-/* Video Background */
+/* Background video selalu full screen */
 .bg-video {
   position: fixed;
   top: 0;
@@ -21,23 +21,20 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -2;
+  z-index: -1;
 }
 
+/* Videonya menyesuaikan layar */
 .bg-video video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* tidak akan naik / turun */
 }
 
-/* Overlay */
+/* Overlay konten */
 .overlay {
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* ===== NAVBAR - OVERRIDE ===== */
