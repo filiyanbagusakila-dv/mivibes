@@ -1,230 +1,752 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MIVIBES - MI IB 2025</title>
     <!-- Bootstrap -->
     <link rel="shortcut icon" href="./asset/favicon.ico" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
-        body { font-family: 'Poppins', sans-serif; background-color: #000; color: #fff; scroll-behavior: smooth; }
-        .bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        #bgVideo { width: 100%; height: 100%; object-fit: cover; }
-        .overlay { background: rgba(0, 0, 0, 0.75); min-height: 100vh; }
-        
-        /* Navbar */
-        .navbar { background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 2px solid #ffc107; }
-        
-        /* Hero */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        
-        /* Cards Global */
-        .card { border-radius: 15px; border: 1px solid #444; transition: 0.3s; background: #111 !important; height: 100%; }
-        .card:hover { transform: translateY(-8px); border-color: #ffc107; box-shadow: 0 10px 20px rgba(255, 193, 7, 0.2); }
-        
-        /* Jadwal Specific */
-        .card-header-jadwal { background: #ffc107; color: #000; font-weight: 700; text-align: center; padding: 10px; border-radius: 13px 13px 0 0; }
-        .badge-time { background-color: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid #ffc107; font-size: 0.75rem; padding: 2px 8px; border-radius: 5px; display: inline-block; margin-bottom: 5px; }
-        .subject-name { font-weight: 600; font-size: 0.9rem; color: #fff; margin-bottom: 2px; }
-        .room-name { font-size: 0.75rem; color: #aaa; margin-bottom: 0; }
-        
-        /* Anggota Specific */
-        .card-img-top { height: 280px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px; }
-        .card-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; }
-        
-        /* Gallery */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-card { position: relative; border-radius: 15px; overflow: hidden; border: 2px solid #333; }
-        .gallery-card img { width: 100%; transition: 0.5s; }
-        .gallery-card:hover img { transform: scale(1.05); }
-        .card-body {
-         color: #ffffff !important;
-        }
-
-        
-        hr { border-color: #444; opacity: 1; }
-    </style>
-</head>
-<body>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="bg-video">
-        <video autoplay muted loop playsinline id="bgVideo">
-            <source src="asset/planet.mp4" type="video/mp4" />
-        </video>
+      <video autoplay muted loop playsinline id="bgVideo">
+        <source src="asset/planet.mp4" type="video/mp4" />
+      </video>
     </div>
 
     <div class="overlay">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold text-warning" href="#">MIVIBES</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#jadwal">Jadwal</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#anggota">Anggota</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Galeri">Galeri</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+          <a class="navbar-brand fw-bold text-warning" href="#">MIVIBES</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navMenu"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#hero">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#jadwal">Jadwal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#anggota">Anggota</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Galeri">Galeri</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-        <!-- Hero Section -->
-        <section id="hero">
-            <h1 class="display-2 fw-bold text-warning">MIVIBES</h1>
-            <p class="lead text-light">IB 2025 MANAJEMEN INFORMATIKA - POLSRI</p>
-            <div class="mt-4">
-                <a href="#jadwal" class="btn btn-warning fw-bold px-4 py-2 me-2">Jadwal Kuliah</a>
-                <a href="#anggota" class="btn btn-outline-light px-4 py-2">Anggota Kelas</a>
-            </div>
-        </section>
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="hero-content">
+          <div class="hero-kicker">
+            <span></span> MANAJEMEN INFORMATIKA · IB 2025
+          </div>
+          <h1>MIVIBES</h1>
+          <p class="hero-subtitle">
+            Satu kelas. Banyak cerita. Satu perjalanan menuju masa depan.
+          </p>
+          <p class="hero-campus">POLITEKNIK NEGERI SRIWIJAYA</p>
+          <div class="hero-actions">
+            <a href="#jadwal" class="btn btn-primary"
+              >Lihat Jadwal <span>↘</span></a
+            >
+            <a href="#anggota" class="btn btn-ghost">Kenal Anggota</a>
+          </div>
+          <div class="hero-scroll"><span></span> SCROLL TO EXPLORE</div>
+        </div>
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+      </section>
 
-        <!-- Jadwal Section -->
-        <section id="jadwal" class="container py-5">
-            <h2 class="text-center mb-5 text-warning fw-bold">JADWAL PERKULIAHAN</h2>
-            <div class="row g-3">
-                <!-- Senin -->
-                <div class="col-md-6 col-lg">
-                    <div class="card">
-                        <div class="card-header-jadwal text-uppercase">Senin</div>
-                        <div class="card-body">
-                            <span class="badge-time">07:00 - 10:50</span>
-                            <p class="subject-name">Desain UI/UX</p>
-                            <p class="room-name">Lab 4 Lt.3</p>
-                            <hr>
-                            <span class="badge-time">10:50 - 12:30</span>
-                            <p class="subject-name">Peng. Manaj. Bisnis</p>
-                            <p class="room-name">Teori 4 Lt.2</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Selasa -->
-                <div class="col-md-6 col-lg">
-                    <div class="card">
-                        <div class="card-header-jadwal text-uppercase">Selasa</div>
-                        <div class="card-body">
-                            <span class="badge-time">07:00 - 09:30</span>
-                            <p class="subject-name">Jaringan Komputer</p>
-                            <p class="room-name">Teori 4 Lt.2</p>
-                            <hr>
-                            <span class="badge-time">10:00 - 11:40</span>
-                            <p class="subject-name">Sistem Basis Data</p>
-                            <p class="room-name">Teori 4 Lt.2</p>
-                            <hr>
-                            <span class="badge-time">11:40 - 12:30</span>
-                            <p class="subject-name">B.Inggris Komunikasi</p>
-                            <p class="room-name">Teori 4 Lt.2</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Rabu -->
-                <div class="col-md-6 col-lg">
-                    <div class="card">
-                        <div class="card-header-jadwal text-uppercase">Rabu</div>
-                        <div class="card-body">
-                            <span class="badge-time">07:00 - 09:30</span>
-                            <p class="subject-name">Sistem Basis Data (P)</p>
-                            <p class="room-name">Lab 1 Lt. Dasar</p>
-                            <hr>
-                            <span class="badge-time">10:00 - 12:30</span>
-                            <p class="subject-name">JarKom (P)</p>
-                            <p class="room-name">Lab 3 Lt.3</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Kamis -->
-                <div class="col-md-6 col-lg">
-                    <div class="card">
-                        <div class="card-header-jadwal text-uppercase">Kamis</div>
-                        <div class="card-body">
-                            <span class="badge-time">07:00 - 09:30</span>
-                            <p class="subject-name">Praktikum Struktur Data</p>
-                            <p class="room-name">Lab 6 Lt.3</p>
-                            <hr>
-                            <span class="badge-time">10:00 - 12:30</span>
-                            <p class="subject-name">Multimedia</p>
-                            <p class="room-name">Lab 4 Lt.3</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Jumat -->
-                <div class="col-md-6 col-lg">
-                    <div class="card">
-                        <div class="card-header-jadwal text-uppercase">Jumat</div>
-                        <div class="card-body">
-                            <span class="badge-time">07:00 - 08:40</span>
-                            <p class="subject-name">Pancasila</p>
-                            <p class="room-name">Teori 1 Lt.2</p>
-                            <hr>
-                            <span class="badge-time">08:40 - 09:30</span>
-                            <p class="subject-name">Multimedia (T)</p>
-                            <p class="room-name">Teori 1 Lt.2</p>
-                            <hr>
-                            <span class="badge-time">09:50 - 11:30</span>
-                            <p class="subject-name">Matematika Diskrit</p>
-                            <p class="room-name">Teori 1 Lt. 2</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <section class="stats-strip container">
+        <div class="stat-card"><strong>24</strong><span>Mahasiswa</span></div>
+        <div class="stat-card"><strong>5</strong><span>Hari Kuliah</span></div>
+        <div class="stat-card"><strong>09</strong><span>Mata Kuliah</span></div>
+        <div class="stat-card"><strong>03</strong><span>Kelas · IB</span></div>
+      </section>
 
-        <!-- Anggota Section -->
-        <section id="anggota" class="container py-5">
-            <h2 class="text-center mb-5 text-warning fw-bold">ANGGOTA KELAS</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/Aflah.jpg" class="card-img-top" alt="Aflah"><div class="card-body"><h6 class="card-title">Aflah Muhammad S.</h6><a href="https://instagram.com/aflah_shafin" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/afrita.jpg" class="card-img-top" alt="Afrita"><div class="card-body"><h6 class="card-title">Afrita Mukti Sari</h6><a href="https://instagram.com/afrita_21" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/ahmadsqi.jpg" class="card-img-top" alt="Sauqi"><div class="card-body"><h6 class="card-title">Ahmad Sauqi E.</h6><a href="https://instagram.com/sauqieeeef" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/andika.jpg" class="card-img-top" alt="Andika"><div class="card-body"><h6 class="card-title">Andika Prayudha</h6><a href="https://instagram.com/and1kaa_02" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/aulia.jpg" class="card-img-top" alt="Aulia"><div class="card-body"><h6 class="card-title">Aulia Azzahra</h6><a href="https://instagram.com/_auliaazhra" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/azahra.jpg" class="card-img-top" alt="Az Zara"><div class="card-body"><h6 class="card-title">Az Zara Salsa Billa</h6><a href="https://instagram.com/__salsaaaa7" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/bunga.jpg" class="card-img-top" alt="Bunga"><div class="card-body"><h6 class="card-title">Bunga Enjelina</h6><a href="https://instagram.com/bungaenjelina_" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/deswita.jpg" class="card-img-top" alt="Deswita"><div class="card-body"><h6 class="card-title">Deswita Tri Melita</h6><a href="https://instagram.com/dswtrmlt_" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/dinda.jpg" class="card-img-top" alt="Dinda"><div class="card-body"><h6 class="card-title">Dinda Zuyyin H.</h6><a href="https://instagram.com/dindazuyyin" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/filiyan.jpg" class="card-img-top" alt="Filiyan"><div class="card-body"><h6 class="card-title">Filiyan Bagus A.</h6><a href="https://instagram.com/flynbgs" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/karima.jpg" class="card-img-top" alt="Karima"><div class="card-body"><h6 class="card-title">Karima Febriyanti</h6><a href="https://instagram.com/karimafebriyantii_" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/mifta.jpg" class="card-img-top" alt="Miftah"><div class="card-body"><h6 class="card-title">Miftah Firdaus</h6><a href="https://instagram.com/mftahfrds" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/wildan.jpg" class="card-img-top" alt="Wildan"><div class="card-body"><h6 class="card-title">M Wildan Rafi A.</h6><a href="https://instagram.com/wildannnnrrfi" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/zidal.jpg" class="card-img-top" alt="Zidal"><div class="card-body"><h6 class="card-title">M Zidal Muttaqin</h6><a href="https://instagram.com/mhmmdzidalmttqin_" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/masayu.jpg" class="card-img-top" alt="Massayu"><div class="card-body"><h6 class="card-title">Massayu Adinda M.</h6><a href="https://instagram.com/massayuadnda__" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/ihsan.jpg" class="card-img-top" alt="Ihsan"><div class="card-body"><h6 class="card-title">M. Ihsan</h6><a href="https://instagram.com/ihs.nnnn" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/nawai.jpg" class="card-img-top" alt="Nailah"><div class="card-body"><h6 class="card-title">Nailah Areta A.</h6><a href="https://instagram.com/neailareta" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/novelia.jpg" class="card-img-top" alt="Novelia"><div class="card-body"><h6 class="card-title">Novelia</h6><a href="https://instagram.com/llakk._" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/alika.jpg" class="card-img-top" alt="Putri Alika"><div class="card-body"><h6 class="card-title">Putri Alika Sari</h6><a href="https://instagram.com/putrialika_07" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/putra.jpg" class="card-img-top" alt="Rahmad"><div class="card-body"><h6 class="card-title">Rahmad Syaputra</h6><a href="https://instagram.com/rmd_d_saputra" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/retno.jpg" class="card-img-top" alt="Retno"><div class="card-body"><h6 class="card-title">Retno Endah P.</h6><a href="https://instagram.com/rtno_endh_prtwi723" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/caca.jpg" class="card-img-top" alt="Salsabila"><div class="card-body"><h6 class="card-title">Salsabila Julia M.</h6><a href="https://instagram.com/caca_2k2x" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/ulfa.jpg" class="card-img-top" alt="Ulfa"><div class="card-body"><h6 class="card-title">Ulfa Munawaroh</h6><a href="https://instagram.com/muna_warohhh_" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
-                <div class="col-6 col-md-4 col-lg-3"><div class="card text-center"><img src="asset/ayas.jpg" class="card-img-top" alt="Yahya"><div class="card-body"><h6 class="card-title">Yahya Ayas</h6><a href="#" class="btn btn-sm btn-warning fw-bold px-3">Instagram</a></div></div></div>
+      <!-- Jadwal Section -->
+      <section id="jadwal" class="container py-5">
+        <div class="section-heading">
+          <span class="eyebrow">WEEKLY ROUTINE</span>
+          <h2>JADWAL PERKULIAHAN</h2>
+          <p>Atur ritme kuliahmu, jangan sampai ada kelas yang terlewat.</p>
+        </div>
+        <div class="row g-3">
+          <!-- Senin -->
+          <div class="col-md-6 col-lg">
+            <div class="card glass-card">
+              <div class="card-header-jadwal text-uppercase">Senin</div>
+              <div class="card-body">
+                <span class="badge-time">07:00 - 09:30</span>
+                <p class="subject-name">Kecerdasan Buatan</p>
+                <p class="room-name">Teori 3 lt.2 Bahasa inggris</p>
+                <hr />
+                <span class="badge-time">10:00 - 12:30</span>
+                <p class="subject-name">Pemrograman Python</p>
+                <p class="room-name">Lab.6 Lt. 2 MI</p>
+              </div>
             </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="Galeri" class="container py-5">
-            <h2 class="text-center mb-5 text-warning fw-bold">GALERI FOTO IB</h2>
-            <div class="gallery-grid">
-                <div class="gallery-card">
-                    <img src="asset/baru.jpg" alt="Foto 1">
-                </div>
-                <div class="gallery-card">
-                    <img src="asset/batik (1).jpg" alt="Foto 2">
-                </div>
+          </div>
+          <!-- Selasa -->
+          <div class="col-md-6 col-lg">
+            <div class="card glass-card">
+              <div class="card-header-jadwal text-uppercase">Selasa</div>
+              <div class="card-body">
+                <span class="badge-time">07:00 - 09:30</span>
+                <p class="subject-name">Pemrograman Web</p>
+                <p class="room-name">Lab.10 Lt. 2 MI</p>
+                <hr />
+                <span class="badge-time">10:00 - 12:30</span>
+                <p class="subject-name">Statistik dan Probabilitas</p>
+                <p class="room-name">Lab.2 Lt.2</p>
+              </div>
             </div>
-        </section>
+          </div>
+          <!-- Rabu -->
+          <div class="col-md-6 col-lg">
+            <div class="card glass-card">
+              <div class="card-header-jadwal text-uppercase">Rabu</div>
+              <div class="card-body">
+                <span class="badge-time">07:00 - 08:40</span>
+                <p class="subject-name">Bahasa Inggris Profesi</p>
+                <p class="room-name">Teori 5 Lt. 2 B.Inggris</p>
+                <hr />
+                <span class="badge-time">08:40 - 10:50</span>
+                <p class="subject-name">Pendidikan Kewarganegaraan</p>
+                <p class="room-name">Teori 5 Lt. 2 B.Inggris</p>
+                <hr />
+                <span class="badge-time">10:50 - 12:30</span>
+                <p class="subject-name">Statistik dan Probabilitas</p>
+                <p class="room-name">Teori 5 Lt. 2 B.Inggris</p>
+              </div>
+            </div>
+          </div>
+          <!-- Kamis -->
+          <div class="col-md-6 col-lg">
+            <div class="card glass-card">
+              <div class="card-header-jadwal text-uppercase">Kamis</div>
+              <div class="card-body">
+                <span class="badge-time">07:00 - 10:50</span>
+                <p class="subject-name">Pemrograman Mobile</p>
+                <p class="room-name">Lab.9 Lt. 2 MI</p>
+                <hr />
+                <span class="badge-time">10:50 - 12:30</span>
+                <p class="subject-name">Pemrograman Berorientasi Objek</p>
+                <p class="room-name">Teori 4 Lt. 2 B.Inggris</p>
+              </div>
+            </div>
+          </div>
+          <!-- Jumat -->
+          <div class="col-md-6 col-lg">
+            <div class="card glass-card">
+              <div class="card-header-jadwal text-uppercase">Jumat</div>
+              <div class="card-body">
+                <span class="badge-time">07:00 - 09:30</span>
+                <p class="subject-name">
+                  Sistem Informasi Manajemen Perusahaan
+                </p>
+                <p class="room-name">Teori 2 Lt. 1 MI</p>
+                <hr />
+                <span class="badge-time">09:30 - 11:30</span>
+                <p class="subject-name">Pemrograman Berorientasi Objek</p>
+                <p class="room-name">Teori 1 Lt.2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!-- Footer -->
-        <footer class="text-center py-5 border-top border-warning mt-5">
-            <p class="text-secondary small">&copy; 2025 MIVIBES - Manajemen Informatika Politeknik Negeri Sriwijaya</p>
-        </footer>
+      <!-- Anggota Section -->
+      <section id="anggota" class="container py-5">
+        <div class="section-heading">
+          <span class="eyebrow">MEET THE CLASS</span>
+          <h2>ANGGOTA KELAS</h2>
+          <p>Kenalan dengan orang-orang yang membuat IB 2025 lebih berwarna.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/Aflah.jpg" class="card-img-top" alt="Aflah" />
+              <div class="card-body">
+                <h6 class="card-title">Aflah Muhammad S.</h6>
+                <a
+                  href="https://instagram.com/aflah_shafin"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/afrita.jpg" class="card-img-top" alt="Afrita" />
+              <div class="card-body">
+                <h6 class="card-title">Afrita Mukti Sari</h6>
+                <a
+                  href="https://instagram.com/afrita_21"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/ahmadsqi.jpg" class="card-img-top" alt="Sauqi" />
+              <div class="card-body">
+                <h6 class="card-title">Ahmad Sauqi E.</h6>
+                <a
+                  href="https://instagram.com/sauqieeeef"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/andika.jpg" class="card-img-top" alt="Andika" />
+              <div class="card-body">
+                <h6 class="card-title">Andika Prayudha</h6>
+                <a
+                  href="https://instagram.com/and1kaa_02"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/aulia.jpg" class="card-img-top" alt="Aulia" />
+              <div class="card-body">
+                <h6 class="card-title">Aulia Azzahra</h6>
+                <a
+                  href="https://instagram.com/_auliaazhra"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/azahra.jpg" class="card-img-top" alt="Az Zara" />
+              <div class="card-body">
+                <h6 class="card-title">Az Zara Salsa Billa</h6>
+                <a
+                  href="https://instagram.com/__salsaaaa7"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/bunga.jpg" class="card-img-top" alt="Bunga" />
+              <div class="card-body">
+                <h6 class="card-title">Bunga Enjelina</h6>
+                <a
+                  href="https://instagram.com/bungaenjelina_"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/deswita.jpg" class="card-img-top" alt="Deswita" />
+              <div class="card-body">
+                <h6 class="card-title">Deswita Tri Melita</h6>
+                <a
+                  href="https://instagram.com/dswtrmlt_"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/dinda.jpg" class="card-img-top" alt="Dinda" />
+              <div class="card-body">
+                <h6 class="card-title">Dinda Zuyyin H.</h6>
+                <a
+                  href="https://instagram.com/dindazuyyin"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/filiyan.jpg" class="card-img-top" alt="Filiyan" />
+              <div class="card-body">
+                <h6 class="card-title">Filiyan Bagus A.</h6>
+                <a
+                  href="https://instagram.com/flynbgs"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/karima.jpg" class="card-img-top" alt="Karima" />
+              <div class="card-body">
+                <h6 class="card-title">Karima Febriyanti</h6>
+                <a
+                  href="https://instagram.com/karimafebriyantii_"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/mifta.jpg" class="card-img-top" alt="Miftah" />
+              <div class="card-body">
+                <h6 class="card-title">Miftah Firdaus</h6>
+                <a
+                  href="https://instagram.com/mftahfrds"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/wildan.jpg" class="card-img-top" alt="Wildan" />
+              <div class="card-body">
+                <h6 class="card-title">M Wildan Rafi A.</h6>
+                <a
+                  href="https://instagram.com/wildannnnrrfi"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/zidal.jpg" class="card-img-top" alt="Zidal" />
+              <div class="card-body">
+                <h6 class="card-title">M Zidal Muttaqin</h6>
+                <a
+                  href="https://instagram.com/mhmmdzidalmttqin_"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/masayu.jpg" class="card-img-top" alt="Massayu" />
+              <div class="card-body">
+                <h6 class="card-title">Massayu Adinda M.</h6>
+                <a
+                  href="https://instagram.com/massayuadnda__"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/ihsan.jpg" class="card-img-top" alt="Ihsan" />
+              <div class="card-body">
+                <h6 class="card-title">M. Ihsan</h6>
+                <a
+                  href="https://instagram.com/ihs.nnnn"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/nawai.jpg" class="card-img-top" alt="Nailah" />
+              <div class="card-body">
+                <h6 class="card-title">Nailah Areta A.</h6>
+                <a
+                  href="https://instagram.com/neailareta"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/novelia.jpg" class="card-img-top" alt="Novelia" />
+              <div class="card-body">
+                <h6 class="card-title">Novelia</h6>
+                <a
+                  href="https://instagram.com/llakk._"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img
+                src="asset/alika.jpg"
+                class="card-img-top"
+                alt="Putri Alika"
+              />
+              <div class="card-body">
+                <h6 class="card-title">Putri Alika Sari</h6>
+                <a
+                  href="https://instagram.com/putrialika_07"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/putra.jpg" class="card-img-top" alt="Rahmad" />
+              <div class="card-body">
+                <h6 class="card-title">Rahmad Syaputra</h6>
+                <a
+                  href="https://instagram.com/rmd_d_saputra"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/retno.jpg" class="card-img-top" alt="Retno" />
+              <div class="card-body">
+                <h6 class="card-title">Retno Endah P.</h6>
+                <a
+                  href="https://instagram.com/rtno_endh_prtwi723"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/caca.jpg" class="card-img-top" alt="Salsabila" />
+              <div class="card-body">
+                <h6 class="card-title">Salsabila Julia M.</h6>
+                <a
+                  href="https://instagram.com/caca_2k2x"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/ulfa.jpg" class="card-img-top" alt="Ulfa" />
+              <div class="card-body">
+                <h6 class="card-title">Ulfa Munawaroh</h6>
+                <a
+                  href="https://instagram.com/muna_warohhh_"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card text-center member-card">
+              <img src="asset/ayas.jpg" class="card-img-top" alt="Yahya" />
+              <div class="card-body">
+                <h6 class="card-title">Yahya Ayas</h6>
+                <a
+                  href="#"
+                  class="member-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="Galeri" class="container py-5">
+        <div class="section-heading">
+          <span class="eyebrow">CLASS MEMORIES</span>
+          <h2>GALERI FOTO IB</h2>
+          <p>Beberapa momen yang layak disimpan dalam cerita kelas.</p>
+        </div>
+        <div class="gallery-slider">
+          <div class="gallery-track">
+            <div class="gallery-card">
+              <img src="asset/baru.jpg" alt="Foto 1" />
+            </div>
+            <div class="gallery-card">
+              <img src="asset/batik (1).jpg" alt="Foto 2" />
+            </div>
+            <div class="gallery-card">
+              <img src="asset/Bakar1.jpeg" alt="Foto 3" />
+            </div>
+            <div class="gallery-card">
+              <img src="asset/bakar2.jpeg" alt="Foto 4" />
+            </div>
+            <div class="gallery-card">
+              <img src="asset/s2.jpeg" alt="Foto 5" />
+            </div>
+          </div>
+
+          <button class="gallery-btn gallery-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+          <button class="gallery-btn gallery-next" type="button" aria-label="Foto berikutnya">›</button>
+
+          <div class="gallery-dots" aria-label="Indikator galeri">
+            <button class="gallery-dot active" type="button" aria-label="Foto 1"></button>
+            <button class="gallery-dot" type="button" aria-label="Foto 2"></button>
+            <button class="gallery-dot active" type="button" aria-label="Foto 3"></button>
+            <button class="gallery-dot" type="button" aria-label="Foto 4"></button>
+            <button class="gallery-dot active" type="button" aria-label="Foto 5"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-inner container">
+          <div>
+            <div class="footer-brand">MIVIBES<span>.</span></div>
+            <p>MI IB 2025 · Politeknik Negeri Sriwijaya</p>
+          </div>
+          <a href="#hero" class="back-top">BACK TO TOP ↑</a>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2025 MIVIBES — All memories reserved.
+        </div>
+      </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+     const galleryTrack = document.querySelector(".gallery-track");
+  const galleryCards = document.querySelectorAll(".gallery-card");
+  const galleryDots = document.querySelectorAll(".gallery-dot");
+  const galleryPrev = document.querySelector(".gallery-prev");
+  const galleryNext = document.querySelector(".gallery-next");
+
+  let galleryIndex = 0;
+  let galleryStartX = 0;
+  let galleryCurrentX = 0;
+  let galleryDragging = false;
+
+  function updateGallery() {
+    if (!galleryTrack || !galleryCards.length) return;
+
+    const card = galleryCards[0];
+    const gap = parseFloat(getComputedStyle(galleryTrack).gap) || 0;
+    const moveAmount = card.offsetWidth + gap;
+
+    galleryTrack.style.transform =
+      `translateX(-${galleryIndex * moveAmount}px)`;
+
+    galleryDots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === galleryIndex);
+    });
+  }
+
+  function nextGallery() {
+    if (galleryIndex < galleryCards.length - 1) {
+      galleryIndex++;
+      updateGallery();
+    }
+  }
+
+  function prevGallery() {
+    if (galleryIndex > 0) {
+      galleryIndex--;
+      updateGallery();
+    }
+  }
+
+  galleryNext?.addEventListener("click", nextGallery);
+  galleryPrev?.addEventListener("click", prevGallery);
+
+  galleryDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      galleryIndex = index;
+      updateGallery();
+    });
+  });
+
+  /* =========================
+     SWIPE HP
+     ========================= */
+
+  galleryTrack?.addEventListener(
+    "touchstart",
+    (event) => {
+      galleryStartX = event.touches[0].clientX;
+      galleryCurrentX = galleryStartX;
+    },
+    { passive: true }
+  );
+
+  galleryTrack?.addEventListener(
+    "touchmove",
+    (event) => {
+      galleryCurrentX = event.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  galleryTrack?.addEventListener(
+    "touchend",
+    () => {
+      const distance = galleryStartX - galleryCurrentX;
+
+      if (Math.abs(distance) > 50) {
+        if (distance > 0) {
+          nextGallery();
+        } else {
+          prevGallery();
+        }
+      }
+    },
+    { passive: true }
+  );
+
+  /* =========================
+     DRAG MOUSE DESKTOP
+     ========================= */
+
+  galleryTrack?.addEventListener("mousedown", (event) => {
+    galleryDragging = true;
+    galleryStartX = event.clientX;
+    galleryCurrentX = galleryStartX;
+
+    galleryTrack.classList.add("dragging");
+  });
+
+  document.addEventListener("mousemove", (event) => {
+    if (!galleryDragging) return;
+
+    galleryCurrentX = event.clientX;
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (!galleryDragging) return;
+
+    const distance = galleryStartX - galleryCurrentX;
+
+    galleryDragging = false;
+    galleryTrack.classList.remove("dragging");
+
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        nextGallery();
+      } else {
+        prevGallery();
+      }
+    }
+  });
+
+  /* =========================
+     KEYBOARD
+     ========================= */
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      nextGallery();
+    }
+
+    if (event.key === "ArrowLeft") {
+      prevGallery();
+    }
+  });
+
+  window.addEventListener("resize", updateGallery);
+
+  updateGallery();
+    </script>
+    
+  </body>
 </html>
